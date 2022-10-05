@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -e -o pipefail
+
+if [ $# -ne 2 ]; then
+  echo "usage: $0 PROJECT CHROM"
+  exit
+fi
+
+project=$1
+chrom=$2
+
+filter='FILTER="PASS"&INFO/AAScore[*]>0.95&F_MISSING<0.05&TYPE="snp"'
+# filter='FILTER="PASS"&INFO/AAScore[*]>0.95&F_MISSING<0.05'
+
+# beagle_mem="340G"; beagle_instance_type="mem2_ssd1_v2_x96"; beagle_args="window=30"
+# beagle_mem="460G"; beagle_instance_type="mem3_ssd1_v2_x64"; beagle_args=""
+beagle_mem="700G"; beagle_instance_type="mem3_ssd1_v2_x96"; beagle_args=""
+
+dx run ${project}:/apps/phase-ukb-150k \
+  -y \
+  --name "phase-ukb-150k.chr${chrom}" \
+  --priority high \
+  -i "project=${project}" \
+  -i "chrom=${chrom}" \
+  -i "filter=${filter}" \
+  -i "beagle_instance_type=${beagle_instance_type}" \
+  -i "beagle_mem=${beagle_mem}" \
+  -i "beagle_args=${beagle_args}"

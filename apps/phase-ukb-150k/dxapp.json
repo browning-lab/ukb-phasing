@@ -1,0 +1,85 @@
+{
+  "name": "phase-ukb-150k",
+  "title": "phase-ukb-150k",
+  "summary": "Phases 150,119 sequenced samples in the UK Biobank",
+  "dxapi": "1.0.0",
+  "version": "0.0.1",
+  "inputSpec": [
+    {
+      "name": "project",
+      "label": "the DNAnexus project name",
+      "class": "string",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "chrom",
+      "label": "a chromosome index",
+      "class": "string",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "filter",
+      "label": "a bcftools filter expression",
+      "class": "string",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "beagle_instance_type",
+      "label": "DNAnexus instance type used for Beagle phasing",
+      "class": "string",
+      "optional": true,
+      "default": "mem3_ssd1_v2_x96",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "beagle_mem",
+      "label": "Maximum memory consumed by the java virtual machine.",
+      "class": "string",
+      "optional": true,
+      "default": "700G",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "beagle_args",
+      "label": "additional Beagle arguments",
+      "class": "string",
+      "optional": true,
+      "default": "",
+      "help": ""
+    }
+  ],
+  "outputSpec": [],
+  "runSpec": {
+    "timeoutPolicy": {
+      "*": {
+        "days": 14
+      }
+    },
+    "interpreter": "bash",
+    "file": "src/phase-ukb-150k.sh",
+    "distribution": "Ubuntu",
+    "release": "20.04",
+    "version": "0"
+  },
+  "access": {
+    "project": "ADMINISTER"
+  },
+  "regionalOptions": {
+    "aws:eu-west-2": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem1_ssd1_v2_x2"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "name": "cat-files",
+  "title": "cat-files",
+  "summary": "Concatenate files",
+  "dxapi": "1.0.0",
+  "version": "0.0.1",
+  "inputSpec": [
+    {
+      "name": "file",
+      "label": "an input file",
+      "class": "array:file",
+      "optional": false,
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "out_filename",
+      "label": "output filename",
+      "class": "string",
+      "optional": false,
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "out_file",
+      "label": "output file",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    }
+  ],
+  "runSpec": {
+    "timeoutPolicy": {
+      "*": {
+        "hours": 12
+      }
+    },
+    "interpreter": "bash",
+    "file": "src/cat-files.sh",
+    "distribution": "Ubuntu",
+    "release": "20.04",
+    "version": "0"
+  },
+  "regionalOptions": {
+    "aws:eu-west-2": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem1_hdd1_v2_x2"
+        }
+      }
+    }
+  }
+}

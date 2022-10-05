@@ -1,0 +1,64 @@
+{
+  "name": "tabix",
+  "title": "tabix",
+  "summary": "indexes a VCF file",
+  "dxapi": "1.0.0",
+  "version": "0.0.1",
+  "inputSpec": [
+    {
+      "name": "in_vcf",
+      "label": "input gzip-compressed VCF file",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "out_filename",
+      "label": "filename of output tabix index",
+      "class": "string",
+      "optional": false,
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "out_tbi",
+      "label": "output tabix index",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    }
+  ],
+  "runSpec": {
+    "timeoutPolicy": {
+      "*": {
+        "hours": 48
+      }
+    },
+    "execDepends": [
+      {"name": "tabix"}
+    ],
+    "interpreter": "bash",
+    "file": "src/tabix.sh",
+    "distribution": "Ubuntu",
+    "release": "20.04",
+    "version": "0"
+  },
+  "regionalOptions": {
+    "aws:eu-west-2": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem1_ssd2_v2_x2"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "name": "filter-vcfs",
+  "title": "filter-vcfs",
+  "summary": "Apply a user-specified filter to a list of VCF files",
+  "dxapi": "1.0.0",
+  "version": "0.0.1",
+  "inputSpec": [
+    {
+      "name": "in_vcf",
+      "label": "bgzip-compressed input VCF file",
+      "class": "array:file",
+      "optional": false,
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    },
+    {
+      "name": "filter",
+      "label": "bcftools filter expression",
+      "class": "string",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "header",
+      "label": "include VCF header",
+      "class": "boolean",
+      "optional": true,
+      "default": true,
+      "help": ""
+    },
+    {
+      "name": "out_filename",
+      "label": "filename of bgzip-compressed, filtered output file",
+      "class": "string",
+      "optional": false,
+      "help": ""
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "filtered_bgzip_file",
+      "label": "filtered, bgzip-compressed file",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    }
+  ],
+  "runSpec": {
+    "timeoutPolicy": {
+      "*": {
+        "hours": 12
+      }
+    },
+    "execDepends": [
+      {"name": "tabix"},
+      {"name": "bcftools"}
+    ],
+    "interpreter": "bash",
+    "file": "src/filter-vcfs.sh",
+    "distribution": "Ubuntu",
+    "release": "20.04",
+    "version": "0"
+  },
+  "regionalOptions": {
+    "aws:eu-west-2": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem1_ssd1_v2_x36"
+        }
+      }
+    }
+  }
+}

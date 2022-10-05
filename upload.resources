@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e -o pipefail
+
+if [ $# -ne 1 ]; then
+  echo "usage: $0 PROJECT"
+  exit
+fi
+
+project=$1
+app_folder="${project}:/apps/"
+map_folder="${project}:/maps/"
+phased_folder="${project}:/phased/"
+
+dx select ${project}
+
+dx mkdir -p ${app_folder} ${map_folder} ${phased_folder}
+
+dx build -y -f -d ${app_folder}/filter-vcfs     apps/filter-vcfs
+dx build -y -f -d ${app_folder}/cat-files       apps/cat-files/
+dx build -y -f -d ${app_folder}/beagle          apps/beagle/
+dx build -y -f -d ${app_folder}/tabix           apps/tabix/
+dx build -y -f -d ${app_folder}/phase-ukb-150k  apps/phase-ukb-150k/
+
+dx upload --path ${map_folder}  maps/plink.chr*.GRCh38.map
