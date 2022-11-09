@@ -5,7 +5,7 @@ This document contains instructions for running a pipeline that will filter, pha
 This pipeline is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY and without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 Author: [Brian Browning](https://faculty.washington.edu/browning).  
-Last updated: October 4, 2022
+Last updated: November 9, 2022
 
 ## Contents
 
@@ -48,7 +48,7 @@ These commands will:
 From the top-level "ukb-phasing" directory in the downloaded repository, run the following command to phase a chromosome. 
 When you run the command, replace **PROJECT** with the name of your DNAnexus project, and replace **CHROM** with  **1**, **2**, ..., **22**, or **X**.
 ```
-./phase.150k PROJECT CHROM
+./phase.ukb PROJECT CHROM
 ```
 This command will filter the chromosome markers with bcftools **[3]**, phase the filtered genotypes with Beagle **[4]**, and index the output phased VCF file with tabix **[5]**. The run time for a chromosome is between one-half and three days. Chromosomes can be processed in parallel.
 
@@ -60,7 +60,7 @@ to
 ```
 filter='filter=FILTER="PASS"&INFO/AAScore[*]>0.95&F_MISSING<0.05'
 ```
-in the _phase.150k_ file.  Changing the marker filter will affect both computational cost and phase accuracy **[2]**.
+in the _phase.ukb_ file.  Changing the marker filter will affect both computational cost and phase accuracy **[2]**.
 
 The output phased VCF file is saved on the [Research Analysis Platform](https://ukbiobank.dnanexus.com/) as "**PROJECT**:/phased/chr**CHROM**.filt.phased.vcf.gz", where **PROJECT** is the name of your project, and **CHROM** is the chromosome number.  A temporary folder, named  "**PROJECT**:/tmp.chr**CHROM**/", is used to store interim files during the analysis.  The temporary folder is deleted at the end of the analysis.
 
