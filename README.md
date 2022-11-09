@@ -1,11 +1,11 @@
-# A pipeline for phasing 150,119 sequenced genomes in the UK Biobank
+# A pipeline for phasing 200,031 sequenced genomes in the UK Biobank
 
-This document contains instructions for running a pipeline that will filter, phase, and index the genotypes in the first release of UK Biobank whole genome sequence data **[1]**. The output data contain 406,184,991 single nucleotide variants and 150,119 individuals. The pipeline is described in "[Statistical phasing of 150,119 sequenced genomes in the UK Biobank](https://www.biorxiv.org/content/10.1101/2022.10.03.510691v1)" **[2]**. 
+This document contains instructions for running a pipeline that will filter, phase, and index 200,031 genomes in UK Biobank. The pipeline and its application to the first release of UK Biobank whole genome sequence data is described in "[Statistical phasing of 150,119 sequenced genomes in the UK Biobank](https://www.biorxiv.org/content/10.1101/2022.10.03.510691v1)" **[1, 2]**. 
 
 This pipeline is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY and without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 Author: [Brian Browning](https://faculty.washington.edu/browning).  
-Last updated: November 9, 2022
+Last updated: November 18, 2022
 
 ## Contents
 
@@ -19,7 +19,7 @@ Last updated: November 9, 2022
 1. Obtain [tier 3 access](https://www.ukbiobank.ac.uk/enable-your-research/costs) to the UK Biobank data.
 2. [Create a project on the UK Biobank Research Analysis Platform and dispense data to your project](https://dnanexus.gitbook.io/uk-biobank-rap/getting-started/creating-a-project). It may take several hours before the data is fully dispensed.
 3. Install the DNAnexus **dx** command line client on a unix or linux system. The **dx** command line client is part of the [dx-toolkit](https://documentation.dnanexus.com/downloads).
-4. If necessary, increase your [DNAnexus spending limit](https://documentation.dnanexus.com/admin/billing-and-account-management#increasing-your-spending-limit). The cost phasing of chromosomes 1-22 and X with this pipeline is estimated to be between 2,300 and 3,500 British pounds (GBP), depending on how much of the data filtering can be done on lower-cost "spot" compute instances. The cost of storing the compressed, phased data for chromosomes 1-22 and X is around 10 British pounds per month.
+4. If necessary, increase your [DNAnexus spending limit](https://documentation.dnanexus.com/admin/billing-and-account-management#increasing-your-spending-limit). The cost of phasing chromosomes 1-22 and X with this pipeline is estimated to be between 3,200 and 5,000 British pounds (GBP), depending on how much of the data filtering can be performed on lower-cost "spot" compute instances. The cost of storing the compressed, phased data for chromosomes 1-22 and X is less than 15 British pounds per month.
 5. In your DNAnexus user profile, set your job notification policy to "Only on Failure".  This will reduce the number of e-mails that you receive.  Access your user profile by clicking on the menu in the upper right corner of the [Research Analysis Platform](https://ukbiobank.dnanexus.com/) web interface.  Then set your job notification policy in the "Email" section of the "User Account" tab.
 
 [Contents](#contents)
@@ -39,7 +39,7 @@ These commands will:
 2. Change your working directory to the top-level "ukb-phasing" directory in the repository
 3. Select the project that you substituted for "PROJECT" as your current DNAnexus project
 4. Create three folders (_apps/_, _maps/_, and  _phased/_) in your DNAnexus project.
-5. Copy genetic maps for each chromosome to the _maps/_ folder, and copy five DNAnexus applets to the _apps/_ folder.
+5. Copy genetic maps for each chromosome to the _maps/_ folder and copy five DNAnexus applets to the _apps/_ folder.
 
 [Contents](#contents)
 
@@ -50,7 +50,7 @@ When you run the command, replace **PROJECT** with the name of your DNAnexus pro
 ```
 ./phase.ukb PROJECT CHROM
 ```
-This command will filter the chromosome markers with bcftools **[3]**, phase the filtered genotypes with Beagle **[4]**, and index the output phased VCF file with tabix **[5]**. The run time for a chromosome is between one-half and three days. Chromosomes can be processed in parallel.
+This command will filter the chromosome markers with bcftools **[3]**, phase the filtered genotypes with Beagle **[4]**, and index the output phased VCF file with tabix **[5]**. The run time for a chromosome is between 16 hours and three and a half days. Chromosomes can be processed in parallel.
 
 The marker filter restricts the analysis to SNVs with AAScore > 0.95 and missing genotypes rate < 0.05.  You can include structural variants by changing
 ```

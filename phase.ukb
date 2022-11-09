@@ -10,7 +10,7 @@ fi
 project=$1
 chrom=$2
 
-size="150k"
+size="200k"
 
 filter='FILTER="PASS"&INFO/AAScore[*]>0.95&F_MISSING<0.05&TYPE="snp"'
 # filter='FILTER="PASS"&INFO/AAScore[*]>0.95&F_MISSING<0.05'

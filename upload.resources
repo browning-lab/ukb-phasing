@@ -7,7 +7,7 @@ if [ $# -ne 1 ]; then
   exit
 fi
 
-size="150k"
+size="200k"
 
 project=$1
 app_folder="${project}:/apps/"
