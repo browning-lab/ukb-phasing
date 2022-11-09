@@ -9,8 +9,7 @@ https://documentation.dnanexus.com/.
 <!-- /dx-header -->
 
 The phase-ukb-150k app filters and phases a chromosome of sequence data
-for 150,119 individuals in UK Biobank.  Intermediate files are written
-to the 
+for 150,119 individuals in UK Biobank.
 
 The six input parameters are:
 
@@ -21,4 +20,4 @@ The six input parameters are:
   5) beagle_mem:           java -Xmx parameter
   6) beagle_args           additional Beagle arguments
 
-  The phased VCF output file is saved as "${project}:phased/chr${chrom}.filt.phased.vcf.gz"
+The phased VCF output file is saved as "${project}:phased/chr${chrom}.filt.phased.vcf.gz"

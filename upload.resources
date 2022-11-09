@@ -7,6 +7,8 @@ if [ $# -ne 1 ]; then
   exit
 fi
 
+size="150k"
+
 project=$1
 app_folder="${project}:/apps/"
 map_folder="${project}:/maps/"
@@ -20,6 +22,6 @@ dx build -y -f -d ${app_folder}/filter-vcfs     apps/filter-vcfs
 dx build -y -f -d ${app_folder}/cat-files       apps/cat-files/
 dx build -y -f -d ${app_folder}/beagle          apps/beagle/
 dx build -y -f -d ${app_folder}/tabix           apps/tabix/
-dx build -y -f -d ${app_folder}/phase-ukb-150k  apps/phase-ukb-150k/
+dx build -y -f -d ${app_folder}/phase-ukb-${size} apps/phase-ukb-${size}/
 
 dx upload --path ${map_folder}  maps/plink.chr*.GRCh38.map
