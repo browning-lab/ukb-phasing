@@ -63,7 +63,7 @@ main() {
       -i out_filename=${out_filename}" &
     }
 
-  filter 0 0 "true" mem1_ssd1_v2_x2
+  filter 0 0 "true" mem2_ssd1_v2_x2
   step="100"
   instance_type="mem1_ssd1_v2_x72"
   max_block=$(dx ls "${in_dir}ukb24304_c${chrom}_b*_v1.vcf.gz" | tail -n +2 | wc -l)
