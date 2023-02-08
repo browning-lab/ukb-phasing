@@ -1,0 +1,25 @@
+
+All programs in this GIT repository are open source software:
+
+1) All bash shell scripts in the DNAnexus applets are licensed under the
+   Apache 2.0 license (https://www.apache.org/licenses/LICENSE-2.0).
+  
+2) Beagle (http://faculty.washington.edu/browning/beagle/beagle.html) is
+   licensed under the GNU General PUblic License, version 3
+   (https://www.gnu.org/licenses/gpl-3.0.en.html).
+
+3) Bcftools (https://samtools.github.io/bcftools/) is licensed under either 
+   the MIT/Expat License or the GNU General Public License, version 3
+   (https://github.com/samtools/bcftools/blob/develop/LICENSE).
+
+4) Tabix (http://www.htslib.org/doc/tabix.html) is licensed under the MIT/X11
+   License (https://academic.oup.com/bioinformatics/article/27/5/718/262743)
+
+5) OpenJDK (https://openjdk.org) Java is licensed under the GNU General
+   Public License, version 2, with the Classpath Exception
+   (https://openjdk.org/legal/gplv2+ce.html)
+
+6) The DNAnexus dx-toolkit (https://github.com/dnanexus/dx-toolkit), which 
+   includes the dx command line client is licensed under the Apache 2.0
+   License (https://www.apache.org/licenses/LICENSE-2.0).
+
