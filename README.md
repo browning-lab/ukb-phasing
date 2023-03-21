@@ -54,11 +54,11 @@ This command will filter the chromosome markers with bcftools **[3]**, phase the
 
 The marker filter restricts the analysis to SNVs with AAScore > 0.95 and missing genotypes rate < 0.05.  You can include structural variants by changing
 ```
-filter='filter=FILTER="PASS"&INFO/AAScore[*]>0.95&F_MISSING<0.05&TYPE="snp"'
+filter='FILTER="PASS"&INFO/AAScore[*]>0.95&F_MISSING<0.05&TYPE="snp"'
 ```
 to
 ```
-filter='filter=FILTER="PASS"&INFO/AAScore[*]>0.95&F_MISSING<0.05'
+filter='FILTER="PASS"&INFO/AAScore[*]>0.95&F_MISSING<0.05'
 ```
 in the _phase.ukb_ file.  Changing the marker filter will affect both computational cost and phase accuracy **[2]**.
 
